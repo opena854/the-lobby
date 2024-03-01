@@ -1,0 +1,97 @@
+body {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	#box {
+		flex: 0 1 0
+	}
+		
+}
+
+#box {
+	background-color: antiquewhite;
+	border: 0.5ch solid black;
+	margin: 32px;
+	padding: 32px;
+	padding-top: 12px;
+}
+
+#box h1 {
+	padding-left: 32px;
+}
+
+#game {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: stretch;
+	gap: 24px;
+	width: 100%;
+	/* height: 70vh; */
+}
+
+#game #parameters {
+	width: auto;
+	border: 1px solid blue;
+	margin-right: auto;
+	flex: 3 3 30%;
+	padding: 0px 10px;
+}
+
+#game #building {
+	width: auto;
+	margin-right: auto;
+	border: 1px solid green;
+	flex: 7 7 70%;
+	padding: 0px 12px;
+	padding-bottom: 12px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#game #parameters div.input {
+	margin: 8px 0px;
+}
+
+#game #parameters div.control {
+	margin-top: 24px;
+	display: flex;
+	flex-flow: row nowrap;
+	
+	justify-content: space-between;
+	align-items: stretch;
+	gap: 12px;
+}
+
+#game #parameters div.control button {
+	flex: 1;
+}
+
+#game #parameters div.input label {
+	display: inline-block;
+	width: 14ch;
+}
+
+#game #parameters div.input span {
+	display: inline-block;
+	width: 2ch;
+	text-align: center;
+}
+
+#canvas {
+	/* width: 100%; */
+	/* height: 100vh; */
+	max-height: 70vh;
+	display: block;
+	background-color: whitesmoke;
+  }

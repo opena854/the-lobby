@@ -1,0 +1,80 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+	<script type="module" src="src/person.js"></script>
+	<script type="module" src="src/elevator.js"></script>
+	<script type="module" src="src/game.js"></script>
+
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</head>
+
+<body x-data="parameters">
+	<div id="box" x-data="{
+			title: 'The Lobby 🏨',
+			game: {
+				elevators: numberInputFactory('Ascensores', 2, 1, 5),
+				floors: numberInputFactory('Pisos', 6, 2, 12),
+				peopleInitial: numberInputFactory('Personas', 5, 0, 99),
+				personRate: numberInputFactory('Personas x min', 1, 0, 60),
+				get setup() {
+					return {
+						elevators: this.elevators.qty,
+						floors: this.floors.qty,
+						peopleInitial: this.peopleInitial.qty,
+            personRate: this.personRate.qty,
+						...parameters,
+					}
+				},
+				reset() {
+					//this.elevators.reset()
+					//this.floors.reset()
+					
+					if (this.set) {
+						this.set.stop = true
+						this.set = null
+					}
+				},
+				start() {
+					this.set = gameSet(this.setup).setup()
+					window.requestAnimationFrame(drawer(this.set))
+          this.addPerson(this.set.peopleInitial)
+				},
+				addPerson(n=1) {
+          console.log('adding', n)
+					while (n--) 
+						this.set.addPerson(personFactory(this.set))
+				}
+			}
+		}">
+		<h1 x-text="title"></h1>
+		<div id="game">
+			<div id="parameters" x-data="{inputs: ['elevators', 'floors', 'peopleInitial', 'personRate'] }">
+				<h3>Parámetros</h3>
+				<template x-for="inputModel in inputs">
+					<div class="input" x-data="game[inputModel]">
+						<label x-text="label + ':'"></label>
+						<button type="button" @click="sub" x-bind:disabled="isMin">-</button>
+						<span x-text="qty">...</span>
+						<button type="button" @click="add" x-bind:disabled="isMax">+</button>
+					</div>
+				</template>
+				<div class="control">
+					<button @click="game.reset()">Reset</button>
+					<button @click="game.addPerson()" x-bind:disabled="!game.set">Add
+						Person</button>
+					<button @click="game.start()">Start</button>
+				</div>
+			</div>
+			<div id="building">
+				<h3>Edificio</h3>
+				<canvas id="canvas" width="1080" height="768" role="presentation">No JS</canvas>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
