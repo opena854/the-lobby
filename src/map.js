@@ -224,8 +224,8 @@ const map = {
 			} )
 		}).map( obj => {
 			const from = asignedProbability
-			const chances = _.round(obj.quota / totalQuota, 4)
-			asignedProbability = _.round(asignedProbability + chances, 4)
+			const chances = (obj.quota / totalQuota, 4)
+			asignedProbability = (asignedProbability + chances, 4)
 			return {
 				...obj,
 				chances: chances,

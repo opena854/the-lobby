@@ -255,8 +255,8 @@ export const elevatorUnitFactory = (id, core, gameSet) => {
 				ctx.fillText(`${this.floor +1} ${ statusOptions[this.direction] || '⏹' }`, this.position.x + 5, floorY(floor.floor) - 5)
         
         ctx.font = "14px serif";
-        ctx.fillText(`${floor.attending.up === null ? "-" : floor.attending.up} | ${ floor.waiting.up ? _.round((performance.now() - floor.waiting.up)/1000 ): "-" }`, 1060, floorY(floor.floor) - 5, 20)
-        ctx.fillText(`${floor.attending.down === null ? "-" : floor.attending.down} | ${ floor.waiting.down ? _.round((performance.now() - floor.waiting.down)/1000) : "-" }`, 1060, floorY(floor.floor) + 15, 20)
+        ctx.fillText(`${floor.attending.up === null ? "-" : floor.attending.up} | ${ floor.waiting.up ? Math.round((performance.now() - floor.waiting.up)/1000 ): "-" }`, 1060, floorY(floor.floor) - 5, 20)
+        ctx.fillText(`${floor.attending.down === null ? "-" : floor.attending.down} | ${ floor.waiting.down ? Math.round((performance.now() - floor.waiting.down)/1000) : "-" }`, 1060, floorY(floor.floor) + 15, 20)
 			})
       
       ctx.fillStyle = "darkblue";
@@ -344,12 +344,12 @@ export const elevatorCoreFactory = (gameSet) => ({
 	},
 	attending(floor, direction, elevator){
 		this.floors[floor].attending[direction] = elevator;
-    let duration = _.round((performance.now() - this.floors[floor].waiting[direction])/1000, 3)
+    let duration = Math.round((performance.now() - this.floors[floor].waiting[direction])/1000)
     console.log(`elevator ${elevator} assigned to floor ${floor} direction ${direction} after ${duration}s`)
 	},
 	silence(floor, direction){
     if (this.floors[floor].waiting[direction]) {
-      let duration = _.round((performance.now() - this.floors[floor].waiting[direction])/1000, 3)
+      let duration = Math.round((performance.now() - this.floors[floor].waiting[direction])/1000)
       this.floors[floor].waiting[direction] = null;
       this.floors[floor].attending[direction] = null;
       

@@ -273,7 +273,6 @@ export const personFactory = (gameSet) => {
 					
 					ctx.font = "12px serif";
 					ctx.fillText(mindEmoji, this.position.x + 1, this.position.y - 30)
-					//ctx.fillText(_.round(this.timeElpased / 1000), this.position.x + 1, this.position.y - 45)
 					break
 			}
 			
