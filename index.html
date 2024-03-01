@@ -13,6 +13,28 @@
 </head>
 
 <body x-data="parameters">
+	<script type="text/hyperscript">
+		def addPerson()
+			increment :id
+			make a <span.person /> 
+			tell it 
+				set @data-name to "Juan"
+				set @data-id to :id
+				add @_="on click remove me"
+				set your innerHTML to @data-name
+			end
+			put it at end of #people
+		end
+	</script>
+	<div id="test-hs">
+		<p _="on click call addPerson()">
+			Quizás te estés preguntando, ¿qué es una persona?
+		</p>
+		<div id="people">
+
+		</div>
+	</div>
+
 	<div id="box" x-data="{
 			title: 'The Lobby 🏨',
 			game: {
@@ -75,6 +97,7 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 
 </html>

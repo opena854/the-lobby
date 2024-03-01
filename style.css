@@ -95,3 +95,8 @@ input[type=number] {
 	display: block;
 	background-color: whitesmoke;
   }
+
+
+.person {
+	display: block;
+}
